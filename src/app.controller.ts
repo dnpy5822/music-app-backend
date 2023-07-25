@@ -1,42 +1,15 @@
-import {
-  Body,
-  Controller,
-  Get,
-  Header,
-  HttpCode,
-  HttpStatus,
-  Param,
-  Patch,
-  Post,
-  Query,
-} from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { CreateTestDto } from './dto/test.dto';
 
-@Controller('test')
+@Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {
-    console.log('appService', this.appService);
-  }
+  constructor(private readonly appService: AppService) {}
 
   @Get()
   home() {
-    return this.appService;
-  }
-
-  @Get(':id')
-  @Patch()
-  @HttpCode(HttpStatus.NO_CONTENT)
-  get(@Param('id') id: string, @Query('limit') limit: number = 30) {
-    return [{ num: id, limit: limit }];
-  }
-
-  @Post()
-  @Header('X-Den-headers', '1')
-  create(@Body() dto: CreateTestDto): Promise<any> {
-    const id = 1;
-    return new Promise((resolve, reject) =>
-      setTimeout(() => resolve([{ id, ...dto }]), 3000),
-    );
+    return {
+      client_id: process.env.spotify_client_id,
+      title: this.appService.getHello(),
+    };
   }
 }

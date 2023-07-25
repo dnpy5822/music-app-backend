@@ -1,11 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { TodoModule } from './features/todo/todo.module';
-import { CopyTodoModule } from './features/ copy-todo/copy-todos.module';
+import { SpotifyModule } from './modules/spotify/spotify.module';
+require('dotenv').config();
 
 @Module({
-  imports: [TodoModule, CopyTodoModule],
+  imports: [SpotifyModule],
   controllers: [AppController],
   providers: [AppService],
 })
