@@ -1,4 +1,5 @@
 import { Controller, Get } from '@nestjs/common';
+import { ServiceClientPayload } from 'src/modules/serviceClient/serviceClient.interface';
 import { SpotifyService } from '../services/spotify.service';
 
 @Controller('spotify')
@@ -7,6 +8,6 @@ export class SpotifyController {
 
   @Get()
   spotifyInfo() {
-    return this.spotifyService.getSpotifyAuth();
+    return this.spotifyService.getSpotify();
   }
 }
